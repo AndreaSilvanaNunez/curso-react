@@ -1,0 +1,43 @@
+
+
+import { GifItem } from './GifItem';
+import { useFetchGifs } from '../Hooks/useFetchGifs';
+import PropTypes from 'prop-types';
+
+
+
+export const GifGrid = ( { category } ) => {
+
+    const { images, isLoading } = useFetchGifs( {category} )
+    //getGifs(category);
+
+  return (
+    <>
+        <h4>{ category }</h4> 
+        {/* Aca la palabra reservada class se usa para crear una nueva clase de js no 
+        como clase de html ( para dar estilos)
+        Para eso se usa la palabra reservada className
+        jsx className = html class */}
+        <div className="card-grid">
+          {/* images.map(images --> state images del hook useState) */}
+          {/* {images.map( ({id, title}) =>(
+              // <li key={ id }>{ title }</li>
+              <GifItem key={ id } title={title}/>
+          )) } */}
+          {
+            images.map(( images ) => (
+              <GifItem
+                  key={ images.id }
+                  {...images}
+              />
+            ))
+
+          }
+         
+
+
+        
+        </div> 
+    </>
+  )
+}
